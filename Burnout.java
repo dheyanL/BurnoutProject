@@ -22,7 +22,7 @@ public class Burnout{
 
     }
     public void setBurn(int val){
-        currrentBurn = val;
+        currentBurn = val;
 
     }
 
