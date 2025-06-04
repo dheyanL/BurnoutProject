@@ -5,23 +5,41 @@ private int totalHP;
 private int stamina;
 private int maxStamina;
 private int currentHp;
-private ArrayList<Option> storedOptions = new ArrayList<>();
-public Character(int totalHP, int stamina){
+private int stamRegenPerUse;
+public ArrayList<Option> storedOptions = new ArrayList<>();
+public Character(int totalHP, int stamina, int stamRegenPerUse){
     this.totalHP=totalHP;
     this.stamina=stamina;
     maxStamina=stamina;
     currentHp=totalHP;
-    storedOptions.add(new Option(0,0,0,0));
+    storedOptions.add(new Option(0,0,0,0,0));
 }
 
-public void addOption(int netDamage, int initialBurn, int baseIncrement, int staminaCon){
-    storedOptions.add(new Option(netDamage, intialBurn, baseIncrement, int staminaCon));
+public void addOption(int netDamage, int initialBurn, int baseIncrement, int staminaCon, int scaling){
+    storedOptions.add(new Option(netDamage, initialBurn, baseIncrement, staminaCon, scaling));
 }
-public Option getOption(int optionNumber){
+public  Option getOption(int optionNumber){
     return storedOptions.get(optionNumber); 
 
 }
 
+public int useStoredOption(int optionNumber){
+    if(storedOptions.get(optionNumber).staminaCon>=stamina){
+        stamina -= storedOptions.get(optionNumber).staminaCon;
+        stamina+= stamRegenPerUse;
+        if(stamina>maxStamina){
+            stamina=maxStamina;
+        }
+        return storedOptions.get(optionNumber).useOption();
+    }
+    else{
+        stamina+= stamRegenPerUse;
+        if(stamina>maxStamina){
+            stamina=maxStamina;
+        }
+        return 0;
+    }
+}
 public void changeStamina(int amount){
     if(stamina+amount>=maxStamina){
         stamina=maxStamina;

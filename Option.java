@@ -2,13 +2,20 @@ public class Option{
     private int netDamage;
     private int maxDamage;
     public int staminaCon;
-    private int scaleFactor=1;
+    private int maxStaminaCon;
+    private int scaleFactor=10;
     private Burnout burn;
-    public Option(int netDamage, int initialBurn, int baseIncrement, int staminaCon){
+    public Option(int netDamage, int initialBurn, int baseIncrement, int staminaCon, int scaling){
     burn = new Burnout(initialBurn, baseIncrement);
     maxDamage=netDamage;
     this.netDamage=netDamage;
     this.staminaCon =staminaCon;
+    scaleFactor=scaling;
+    }
+
+    public void setScaling(int scale){
+        scaleFactor=scale;
+
     }
     public void burnPenalty(){
         staminaCon+= burn.getBurn()*scaleFactor;
@@ -19,6 +26,10 @@ public class Option{
             netDamage-=burn.getBurn();
 
         }
+
+    }
+    public void burnStaminaPenalty(){
+        staminaCon+= burn.getBurn()*scaleFactor;
 
     }
     public int useOption(){
@@ -38,6 +49,18 @@ public class Option{
         netDamage+=reductionAmount;  
 
         }
+        
+        if(staminaCon+reductionAmount*scaleFactor>=maxStaminaCon){
+            staminaCon=maxStaminaCon;
+
+
+        }
+
+        else{
+        staminaCon+=reductionAmount*scaleFactor;  
+
+        }
+        
 
     } 
     
