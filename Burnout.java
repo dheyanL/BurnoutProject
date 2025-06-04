@@ -15,6 +15,9 @@ public class Burnout{
     }
     public void addBurn(int val){
         currentBurn+= val;
+        if(currentBurn<0){
+            currentBurn=0;
+        }
 
     }
     public int getBurn(){
