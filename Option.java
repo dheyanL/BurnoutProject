@@ -1,6 +1,6 @@
 public class Option{
     private int netDamage;
-    private int maxDamage;
+    private final int maxDamage;
     public int staminaCon;
     private int maxStaminaCon;
     private int scaleFactor=10;
@@ -19,7 +19,7 @@ public class Option{
     }
     public void burnPenalty(){
         staminaCon+= burn.getBurn()*scaleFactor;
-        if(burn.getBurn()>netDamage){
+        if(burn.getBurn()>=netDamage){
             netDamage=0;
         }
         else{
@@ -65,4 +65,4 @@ public class Option{
     } 
     
 
-}
+}                                                            

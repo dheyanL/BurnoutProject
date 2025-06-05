@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Character{
-private int totalHP;
+private final int totalHP;
 private int stamina;
-private int maxStamina;
-private int currentHp;
+private final int maxStamina;
+public int currentHp;
 private int stamRegenPerUse;
 public ArrayList<Option> storedOptions = new ArrayList<>();
 public Character(int totalHP, int stamina, int stamRegenPerUse){
@@ -49,21 +49,21 @@ public void changeStamina(int amount){
         stamina=0;
     }
     else{
-        stamina+= amount;
+        stamina+=amount;
 
     }
 
 }
 public void changeHp(int amount){
-    if(currentHp+amount>=totalHP){
+    if(currentHp-amount>=totalHP){
         currentHp=totalHP;
 
     }
-    else if(currentHp+amount<=0){
+    else if(currentHp-amount<=0){
         currentHp=0;
     }
     else{
-        currentHp+= amount;
+        currentHp-=amount;
 
     }
 }

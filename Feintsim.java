@@ -1,12 +1,12 @@
 // assumes double dash, negative penalty works as intended
 public class Feintsim{
-   public static Character randOption;
-    public static Character aggro;
-    public  static Character passive;
-    public  Feintsim(){
-        Character randOption = new Character(100, 100,20);
-        Character aggro = new Character(100, 100,20);
-        Character passive = new Character (100,100,20);
+   public  Character randOption;
+    public Character aggro;
+    public  Character passive;
+    public Feintsim(){
+        randOption = new Character(100, 100,20);
+        aggro = new Character(100, 100,20);
+        passive = new Character (100,100,20);
         aggro.addOption(4, 0, 0, 20,0 );
         
         aggro.addOption(6, 0, 2, 35,5 );
